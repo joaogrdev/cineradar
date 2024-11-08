@@ -38,7 +38,7 @@ const NavBar = () => {
       <ul className={isMenuOpen ? styles.list : styles.lateralMenu}>
         <li className={styles.item}>
           <NavLink
-            to="/"
+            to="/cineradar"
             className={({ isActive }) =>
               isActive ? styles.activeItemMenu : ""
             }
