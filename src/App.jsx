@@ -12,7 +12,7 @@ function App() {
   
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: "/cineradar",
       element: <Home/>,
       errorElement: <Error/>
     },
