@@ -1,0 +1,16 @@
+[
+    { "name": "Alemanha", "id":"DE" },
+    { "name": "Argentina", "id":"AR" },
+    { "name": "Brasil", "id":"BR" },
+    { "name": "Canadá", "id":"CA" },
+    { "name": "China", "id":"CN" },
+    { "name": "Espanha", "id":"ES" },
+    { "name": "Estados Unidos", "id":"US" },
+    { "name": "França", "id":"FR" },
+    { "name": "Inglaterra", "id":"GB" },
+    { "name": "Índia", "id":"IN" },
+    { "name": "Itália", "id":"IT" },
+    { "name": "Japão", "id":"JP" },
+    { "name": "Portugal", "id":"PT" },
+    { "name": "Rússia", "id":"RU" }
+  ]

@@ -1,0 +1,178 @@
+.navbar {
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    align-items: center;
+    padding-block: 1rem;
+    z-index: 999;
+    position: relative;
+    border-bottom: 1px solid var(--shadow-dark-color);
+}
+
+.title {
+    font-size: 1.5rem;
+    text-align: center;
+    color: var(--contrast-light-color);
+    font-family: var(--logo-font);
+}
+
+.list,
+.lateralMenu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 5vw;
+    font-size: 1.3rem;
+    font-family: var(--subtitle-font);
+}
+
+.list a:not(.activeItemMenu):hover {
+    color: var(--contrast-light-color);
+    transform: scale(1.1);
+    transition: .2s;
+}
+
+.activeItemMenu {
+    border-bottom: 3px solid var(--contrast-light-color);
+    padding-bottom: 1.1rem;
+}
+
+.activeItemMenu:hover {
+    color: var(--lightest-color);
+    scale: none;
+}
+
+/*search feature ---------------*/
+
+.searchContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.inputSearch {
+    background-color: var(--shadow-dark-color);
+    color: var(--lightest-color);
+    border: none;
+    border-bottom: 1px solid var(--contrast-light-color);
+    border-radius: 5px 0 0 5px;
+    padding: .5rem;
+    width: 50%;
+    font-family: var(--text-font);
+}
+
+.inputSearch:focus {
+    outline: none;
+}
+
+.iconSearch {
+    background-color: var(--contrast-light-color);
+    color: var(--gradient-color);
+    padding: 8px;
+    justify-self: center;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.iconSearch:hover, .barSearch:hover {
+    scale: 1.05;
+    transition: .2s;
+}
+
+.barSearch {
+    background-color: var(--contrast-light-color);
+    color: var(--gradient-color);
+    padding: 8px;
+    justify-self: center;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0;
+}
+
+/*icons to open and close lateral menu ---------------*/
+.iconOpenMenu {
+    font-size: 2rem;
+    display: none;
+    justify-self: center;
+}
+
+.iconCloseMenu {
+    font-size: 2rem;
+    justify-self: center;
+}
+
+
+
+
+
+
+@media screen and (max-width: 750px) {
+    .iconOpenMenu {
+        display: block;
+    }
+
+    .list {
+        display: none;
+    }
+
+    .lateralMenu {
+        display: block;
+        position: absolute;
+        flex-direction: column;
+        z-index: 9999999;
+        background-color: var(--gradient-color);
+        width: 100vw;
+        top: 10vh;
+        padding-block: 2rem;
+        border-bottom: none;
+        row-gap: .5rem;
+    }
+
+    .lateralMenu a {
+        width: 100vw;
+        text-align: center;
+        padding-block: .5rem;
+        display: block;
+    }
+
+    .activeItemMenu {
+        border-bottom: none;
+        padding: 0;
+        background-color: var(--contrast-light-color);
+        color: var(--gradient-color);
+    }
+
+    .inputSearch {
+        position: absolute;
+        width: 100vw;
+        top: 10vh;
+        left: 0;
+        z-index: 999;
+        border: none;
+        border-bottom: 1px solid var(--contrast-light-color);
+        border-radius: 0;
+        text-align: center;
+    }
+
+    .barSearch {
+        position: absolute;
+        top: 10vh;
+        right: 0;
+        z-index: 9999999999999;
+        border-radius: 0;
+    }
+
+}
+
+@media screen and (max-width: 500px) {
+    .title {
+        font-size: 1.2rem;
+    }
+}
+
+
+/*remove close menu icon when screen is bigger than 750px*/
+@media screen and (min-width: 750px) {
+    .iconCloseMenu {
+        display: none;
+    }
+}

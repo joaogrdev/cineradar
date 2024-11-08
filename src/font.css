@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --logo-font: 'Krona One', sans-serif;
+    --title-font: 'Righteous', cursive;
+    --subtitle-font: 'Afacad Flux', sans-serif;
+    --text-font: 'Montserrat', sans-serif;
+}
+

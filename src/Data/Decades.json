@@ -1,0 +1,15 @@
+[
+    { "name": "1900", "id": "&primary_release_date.gte=1901-01-01&primary_release_date.lte=1930-12-31" },
+    { "name": "1910", "id": "&primary_release_date.gte=1911-01-01&primary_release_date.lte=1940-12-31" },
+    { "name": "1920", "id": "&primary_release_date.gte=1921-01-01&primary_release_date.lte=1930-12-31" },
+    { "name": "1930", "id": "&primary_release_date.gte=1931-01-01&primary_release_date.lte=1940-12-31" },
+    { "name": "1940", "id": "&primary_release_date.gte=1941-01-01&primary_release_date.lte=1950-12-31" },
+    { "name": "1950", "id": "&primary_release_date.gte=1951-01-01&primary_release_date.lte=1960-12-31" },
+    { "name": "1960", "id": "&primary_release_date.gte=1961-01-01&primary_release_date.lte=1970-12-31" },
+    { "name": "1970", "id": "&primary_release_date.gte=1971-01-01&primary_release_date.lte=1980-12-31" },
+    { "name": "1980", "id": "&primary_release_date.gte=1981-01-01&primary_release_date.lte=1990-12-31" },
+    { "name": "1990", "id": "&primary_release_date.gte=1991-01-01&primary_release_date.lte=2000-12-31" },
+    { "name": "2000", "id": "&primary_release_date.gte=2001-01-01&primary_release_date.lte=2010-12-31" },
+    { "name": "2010", "id": "&primary_release_date.gte=2011-01-01&primary_release_date.lte=2020-12-31" },
+    { "name": "2020", "id": "&primary_release_date.gte=2021-01-01&primary_release_date.lte=2030-12-31" }
+  ]

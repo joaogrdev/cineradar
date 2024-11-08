@@ -1,0 +1,10 @@
+[
+    { "name": "Mais Recentes","id":"1", "url":"?sort_by=primary_release_date.desc" },
+    { "name": "Mais Antigos","id":"2", "url":"?sort_by=primary_release_date.asc" },
+    { "name": "Mais Populares","id":"3", "url":"?sort_by=popularity.desc" },
+    { "name": "Melhor Avaliados","id":"4", "url":"?sort_by=vote_average.desc" },
+    { "name": "Mais Votados","id":"5", "url":"?sort_by=vote_count.desc" },
+    { "name": "Maiores Receitas","id":"6", "url":"?sort_by=revenue.desc" },
+    { "name": "A-Z","id":"7", "url":"?sort_by=title.asc" },
+    { "name": "Z-A","id":"8", "url":"?sort_by=title.desc" }
+  ]

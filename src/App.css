@@ -1,0 +1,8 @@
+body {
+    max-width: 2000px;
+    -background: linear-gradient(to bottom , var(--darkest-color), var(--gradient-color));
+    background-color: var(--darkest-color);
+    color: var(--lightest-color);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
