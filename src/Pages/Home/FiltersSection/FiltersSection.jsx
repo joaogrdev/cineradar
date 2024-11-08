@@ -68,40 +68,49 @@ const FiltersSection = () => {
     }
   };
 
-  const searchByFilter = (item) => () => {
+  const searchByFilter = (item, tipo) => {
     const formatActiveFilter = activeFilter
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
       .toLowerCase();
-console.log(item);
-
-    if(activeFilter=== "Década"){	
-      navigate(`/pesquisa/${formatActiveFilter}?q=${item.name}`);
+    if (tipo === "filmes") {
+      navigate(`/cineradar/pesquisa/filmes?q=${item.id}`);
     } else {
-      navigate(`/pesquisa/${formatActiveFilter}?q=${item.id}`);
+      if (activeFilter === "Década") {
+        navigate(`/cineradar/pesquisa/${formatActiveFilter}?q=${item.name}`);
+      } else {
+        navigate(`/cineradar/pesquisa/${formatActiveFilter}?q=${item.id}`);
+      }
     }
   };
 
   return (
     <section className={styles.section}>
-      
       <div className={styles.top}>
-      <h4 className={styles.title}>
-        Encontre o <span className={styles.contrast}>filme ideal</span> pra
-        você!
-      </h4>
-      <div className={styles.containerSearch}>
-      <input
-        type="search"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className={styles.inputSearch}
-        placeholder="Procure pelo nome do filme..."
-        autoFocus
-        autoComplete="off"
-      />
-      <i className={`${styles.iconSearch} bi bi-search`}></i>
-      </div>
+        <h4 className={styles.title}>
+          Encontre o <span className={styles.contrast}>filme ideal</span> pra
+          você!
+        </h4>
+        <div className={styles.containerSearch}>
+          <input
+            type="search"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className={styles.inputSearch}
+            placeholder="Procure pelo nome do filme..."
+            autoFocus
+            autoComplete="off"
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                searchByFilter({ id: searchTerm }, "filmes");
+              }
+            }}
+          />
+          <i
+            className={`${styles.iconSearch} bi bi-search`}
+            onClick={() => searchByFilter({ id: searchTerm }, "filmes")}
+          ></i>
+        </div>
       </div>
       <div className={styles.container}>
         {filtros.map((filtro) => (
@@ -122,7 +131,7 @@ console.log(item);
               <div className={styles.containerResultFilter}>
                 <p
                   className={styles.itemResultFilter}
-                  onClick={searchByFilter(item)}
+                  onClick={() => searchByFilter(item, "")}
                 >
                   {item.name ? item.name : item.title}
                 </p>

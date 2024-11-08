@@ -56,11 +56,17 @@ const MoviesList = () => {
         ) : (
           moviesList.map((movie) => (
             <div className={styles.movie} key={movie.id}>
-              <img
+              {movie.poster_path ? (
+                <img
                 src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
                 alt={movie.title}
                 className={styles.movieImage}
               />
+              ) : (
+                <div className={`${styles.movieImage} ${styles.movieImagePlaceholder}`}>
+                  <i class="bi bi-film"></i>
+                </div>
+              )}
               <div className={styles.movieInfo}>
                 <p className={styles.movieTitle}>{movie.title}</p>
                 <div className={styles.lineInfo}>

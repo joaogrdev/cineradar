@@ -17,11 +17,11 @@ function App() {
       errorElement: <Error/>
     },
     {
-      path: "/filme/:id",
+      path: "/cineradar/filme/:id",
       element: <MovieDetails />,
     },
     {
-      path: "/pesquisa/:filter",
+      path: "/cineradar/pesquisa/:filter",
       element: <Search />,
       loader: ({ params, search }) => ({ filter: params.filter, id: new URLSearchParams(search).get('q') }),
     }

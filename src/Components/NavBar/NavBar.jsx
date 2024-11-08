@@ -19,6 +19,10 @@ const NavBar = () => {
     }
   }
 
+  window.onload = function() {
+    window.scrollTo(0, 0);
+};
+
   return (
     <nav className={styles.navbar}>
       {isMenuOpen ? (
@@ -48,7 +52,7 @@ const NavBar = () => {
         </li>
         <li className={styles.item}>
           <NavLink
-            to="/filme"
+            to="/cineradar/filme"
             className={({ isActive }) =>
               isActive ? styles.activeItemMenu : ""
             }
@@ -58,7 +62,7 @@ const NavBar = () => {
         </li>
         <li className={styles.item}>
           <NavLink
-            to="/filme"
+            to="/cineradar/filme"
             className={({ isActive }) =>
               isActive ? styles.activeItemMenu : ""
             }

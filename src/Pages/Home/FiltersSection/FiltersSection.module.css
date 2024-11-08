@@ -10,17 +10,13 @@
 
 /*top section (title and search) -------------------*/
 .top {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     width: 100%;
     margin-bottom: 2rem;
     align-items: center;
     gap: 1rem;
-
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-
 }
 
 /*title section -------------------*/
@@ -37,13 +33,10 @@
 .containerSearch {
     display: flex;
     width: 300px;
-    
 }
 
 .inputSearch {
     background-color: var(--darkest-color);
-    border: none;
-    border-bottom: 1px solid var(--contrast-light-color);
     width: 100%;
     color: var(--lightest-color);
     font-family: var(--text-font);
@@ -64,18 +57,17 @@
 
 .iconSearch {
     padding: .6rem;
-    background-color: var(--contrast-light-color);
-    color: var(--gradient-color);
+    background-color: var(--gradient-color);
     cursor: pointer;
     border-radius: 0 10px 10px 0;
     border: 1px solid var(--gradient-color);
     border-left: none;
-    color: var(--darkest-color);
+    color: var(--lightest-color);
 }
 
 .iconSearch:hover {
     background-color: var(--contrast-light-color);
-    color: var(--lightest-color);
+    color: var(--darkest-color);
     transition: .2s;
 }
 
