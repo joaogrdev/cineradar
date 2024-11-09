@@ -98,7 +98,6 @@ const FiltersSection = () => {
             onChange={(e) => setSearchTerm(e.target.value)}
             className={styles.inputSearch}
             placeholder="Procure pelo nome do filme..."
-            autoFocus
             autoComplete="off"
             onKeyDown={(e) => {
               if (e.key === "Enter") {

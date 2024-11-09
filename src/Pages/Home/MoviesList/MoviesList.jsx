@@ -18,8 +18,6 @@ const MoviesList = () => {
     await api
       .get(`/movie/${filterSelected?.id}?language=pt-BR`)
       .then(({ data }) => {
-        console.log(data.results);
-
         setMoviesList(data.results);
         setLoading(false);
       })
@@ -58,20 +56,31 @@ const MoviesList = () => {
             <div className={styles.movie} key={movie.id}>
               {movie.poster_path ? (
                 <img
-                src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
-                alt={movie.title}
-                className={styles.movieImage}
-              />
+                  src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                  alt={movie.title}
+                  className={styles.movieImage}
+                />
               ) : (
-                <div className={`${styles.movieImage} ${styles.movieImagePlaceholder}`}>
+                <div
+                  className={`${styles.movieImage} ${styles.movieImagePlaceholder}`}
+                >
                   <i class="bi bi-film"></i>
                 </div>
               )}
               <div className={styles.movieInfo}>
                 <p className={styles.movieTitle}>{movie.title}</p>
                 <div className={styles.lineInfo}>
-                  <p className={styles.movieDate}>{new Date(movie.release_date).toLocaleString('pt-BR', { year: 'numeric', month: '2-digit', day: '2-digit' })}</p>
-                  <p className={styles.movieRating}><i class="bi bi-star-fill"></i>{movie.vote_average.toFixed(1).replace(".", ",")}</p>
+                  <p className={styles.movieDate}>
+                    {new Date(movie.release_date).toLocaleString("pt-BR", {
+                      year: "numeric",
+                      month: "2-digit",
+                      day: "2-digit",
+                    })}
+                  </p>
+                  <p className={styles.movieRating}>
+                    <i class="bi bi-star-fill"></i>
+                    {movie.vote_average.toFixed(1).replace(".", ",")}
+                  </p>
                 </div>
                 <p className={styles.movieDescription}>{movie.overview}</p>
               </div>

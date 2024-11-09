@@ -33,7 +33,7 @@
 
 .activeItemMenu {
     border-bottom: 3px solid var(--contrast-light-color);
-    padding-bottom: 1.1rem;
+    padding-bottom: .85rem;
 }
 
 .activeItemMenu:hover {
@@ -41,54 +41,43 @@
     scale: none;
 }
 
-/*search feature ---------------*/
+/*social container ---------------*/
 
-.searchContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-}
-
-.inputSearch {
-    background-color: var(--shadow-dark-color);
+.iconInfo {
+    display: none;
+    font-size: 1.2rem;
     color: var(--lightest-color);
-    border: none;
-    border-bottom: 1px solid var(--contrast-light-color);
-    border-radius: 5px 0 0 5px;
-    padding: .5rem;
-    width: 50%;
-    font-family: var(--text-font);
-}
-
-.inputSearch:focus {
-    outline: none;
-}
-
-.iconSearch {
-    background-color: var(--contrast-light-color);
-    color: var(--gradient-color);
-    padding: 8px;
-    justify-self: center;
     cursor: pointer;
-    border-radius: 5px;
+    width: fit-content;
+    margin: 0 auto;
 }
 
-.iconSearch:hover, .barSearch:hover {
-    scale: 1.05;
+.iconInfo:hover {
+    color: var(--contrast-light-color);
     transition: .2s;
 }
 
-.barSearch {
+.socialContainer {
+    display: flex;
+    column-gap: .5rem;
+    justify-content: center;
+}
+
+.socialContainer i {
+    font-size: 1.2rem;
+    color: var(--contrast-light-color);
+    cursor: pointer;
+    padding: .3rem;
+}
+
+.socialContainer i:hover {
+    scale: 1.05;
     background-color: var(--contrast-light-color);
     color: var(--gradient-color);
-    padding: 8px;
-    justify-self: center;
-    cursor: pointer;
-    border-radius: 0 5px 5px 0;
 }
 
 /*icons to open and close lateral menu ---------------*/
+
 .iconOpenMenu {
     font-size: 2rem;
     display: none;
@@ -101,10 +90,7 @@
 }
 
 
-
-
-
-
+/*active hamburguer menu and change list items ----------------*/
 @media screen and (max-width: 750px) {
     .iconOpenMenu {
         display: block;
@@ -121,56 +107,64 @@
         z-index: 9999999;
         background-color: var(--gradient-color);
         width: 100vw;
-        top: 10vh;
-        padding-block: 2rem;
+        top: 9vh;
+        padding-block: 1rem;
         border-bottom: none;
-        row-gap: .5rem;
     }
 
     .lateralMenu a {
         width: 100vw;
         text-align: center;
-        padding-block: .5rem;
+        padding-block: 1rem;
         display: block;
     }
 
     .activeItemMenu {
-        border-bottom: none;
-        padding: 0;
         background-color: var(--contrast-light-color);
         color: var(--gradient-color);
     }
-
-    .inputSearch {
-        position: absolute;
-        width: 100vw;
-        top: 10vh;
-        left: 0;
-        z-index: 999;
-        border: none;
-        border-bottom: 1px solid var(--contrast-light-color);
-        border-radius: 0;
-        text-align: center;
-    }
-
-    .barSearch {
-        position: absolute;
-        top: 10vh;
-        right: 0;
-        z-index: 9999999999999;
-        border-radius: 0;
-    }
-
 }
 
+/*active info icon and change social icons ----------*/
 @media screen and (max-width: 500px) {
     .title {
         font-size: 1.2rem;
     }
+
+    .iconInfo {
+        display: block;
+    }
+
+    .socialContainer {
+        display: none;
+    }
+
+    .openSocial {
+        display: flex;
+        position:absolute;
+        top: 11vh;
+        left: 50%;
+        transform: translateX(-50%);
+        flex-direction: row;
+        column-gap: 0;
+    }
+
+    .openSocial i {
+        background-color: var(--shadow-dark-color);
+        color: var(--contrast-light-color);
+        cursor: pointer;
+        font-size: 1rem;
+        padding: .5rem;
+    }
+
+    .openSocial i:hover {
+        color: var(--gradient-color);
+        background-color: var(--contrast-light-color);
+    }
 }
 
 
-/*remove close menu icon when screen is bigger than 750px*/
+/*remove close menu icon when screen is bigger than 750px ---------------*/
 @media screen and (min-width: 750px) {
     .iconCloseMenu {
         display: none;

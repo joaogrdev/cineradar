@@ -4,20 +4,10 @@ import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(true);
-  const [isSearchInputVisible, setIsSearchInputVisible] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [isSocialOpen, setIsSocialOpen] = useState(false);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  const toggleSearchInput = () => {
-    if (isSearchInputVisible === true && searchTerm === "") {
-      setIsSearchInputVisible(false);
-    } else if (isSearchInputVisible === false) {
-      setIsSearchInputVisible(true);
-    } else {
-      alert(searchTerm);
-      //enviar termo de pesquisa
-    }
-  }
+  const toggleSocial = () => setIsSocialOpen(!isSocialOpen);
 
   window.onload = function() {
     window.scrollTo(0, 0);
@@ -72,23 +62,11 @@ const NavBar = () => {
         </li>
       </ul>
 
-      <div className={styles.searchContainer}>
-        {isSearchInputVisible && (
-          <input
-            className={styles.inputSearch}
-            type="search"
-            name="search"
-            id="search"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        )}
-        <i
-          className={`${
-            isSearchInputVisible ? styles.barSearch : styles.iconSearch
-          } bi bi-search`}
-          onClick={toggleSearchInput}
-        ></i>
+      <i className={`${styles.iconInfo} bi bi-info-circle-fill`} onClick={toggleSocial}></i>
+      <div className={`${styles.socialContainer} ${isSocialOpen ? styles.openSocial : ""}`}>
+        <a target="_blank" href="www.google.com"><i title="Linkedin" class="bi bi-linkedin"></i></a>
+        <a target="_blank" href="www.google.com"><i title="Github" class="bi bi-github"></i></a>
+        <a target="_blank" href="www.google.com"><i title="Twitter" class="bi bi-box-arrow-up-right"></i></a>
       </div>
     </nav>
   );
