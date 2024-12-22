@@ -194,6 +194,7 @@
 
 .castCard {
     width: 100px;
+    min-width: 100px;
     height: auto;
     margin-bottom: .5rem;
 }
