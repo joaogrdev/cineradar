@@ -3,15 +3,15 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
     <script>
-      const basePath = "/cineradar";
-      const currentPath = window.location.pathname;
+      // Extrai o caminho completo após o domínio
+      const path = window.location.pathname + window.location.search + window.location.hash;
       
-      // Evita adicionar /cineradar repetidamente
-      if (!currentPath.startsWith(basePath)) {
-        window.location.replace(basePath + currentPath + window.location.search);
-      }
+      // Redireciona para o index.html, preservando o caminho original
+      window.location.replace("/cineradar/index.html?" + encodeURIComponent(path));
     </script>
   </head>
   <body></body>
 </html>
+
