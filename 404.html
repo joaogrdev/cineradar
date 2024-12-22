@@ -1,23 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting...</title>
     <script>
-      // Extrai o caminho completo após o domínio
-      const path = window.location.pathname + window.location.search + window.location.hash;
-      
-      // Verifica se já estamos na página de index
-      if (!path.includes('index.html')) {
-        // Redireciona para o index.html, preservando o caminho original
-        const redirectPath = new URLSearchParams(window.location.search).get('redirect');
-        if (redirectPath) {
-          window.location.replace("/cineradar/index.html?redirect=" + encodeURIComponent(redirectPath));
-        } else {
-          window.location.replace("/cineradar/index.html");
-        }
-      }
+      // Redireciona todas as requisições para o index.html
+      window.location.replace("/cineradar/index.html");
     </script>
   </head>
   <body></body>
