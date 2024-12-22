@@ -4,7 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
-      window.location.replace("/cineradar" + window.location.pathname + window.location.search);
+      const basePath = "/cineradar";
+      const currentPath = window.location.pathname;
+      
+      // Evita adicionar /cineradar repetidamente
+      if (!currentPath.startsWith(basePath)) {
+        window.location.replace(basePath + currentPath + window.location.search);
+      }
     </script>
   </head>
   <body></body>
