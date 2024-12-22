@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting...</title>
     <script>
-      // Extrai o caminho completo após o domínio
-      const path = window.location.pathname + window.location.search + window.location.hash;
-      
-      // Redireciona para o index.html, preservando o caminho original
-      window.location.replace("/cineradar/index.html?" + encodeURIComponent(path));
-    </script>
+
+    const path = window.location.pathname + window.location.search + window.location.hash;
+    if (!path.includes('index.html')) { // Verifica se não estamos redirecionando para a mesma página
+    window.location.replace("/cineradar/index.html?" + encodeURIComponent(path));
+    }
+
+
+</script>
   </head>
   <body></body>
 </html>
