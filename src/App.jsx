@@ -1,6 +1,7 @@
 import './App.css'
 import {
   createBrowserRouter,
+  HashRouter,
   RouterProvider,
 } from "react-router-dom";
 import Home from './Pages/Home/Home.jsx';
@@ -32,7 +33,7 @@ function App() {
 );
 
   return (
-    <RouterProvider router={router} />  
+      <RouterProvider router={router} />
   )
 }
 
