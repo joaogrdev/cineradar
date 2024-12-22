@@ -81,7 +81,8 @@ function App() {
     const query = new URLSearchParams(window.location.search);
     const redirectedPath = query.get("redirect");
     if (redirectedPath) {
-      window.history.replaceState({}, '', redirectedPath); // Ajusta a URL no navegador
+      const decodedPath = decodeURIComponent(redirectedPath); // Decodifica a URL codificada
+      window.history.replaceState({}, '', decodedPath); // Ajusta a URL no navegador
     }
   }, []);
 
@@ -91,3 +92,4 @@ function App() {
 }
 
 export default App;
+
