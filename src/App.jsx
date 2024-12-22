@@ -12,20 +12,24 @@ function App() {
   
   const router = createBrowserRouter([
     {
-      path: "/cineradar",
+      path: "/",
       element: <Home/>,
       errorElement: <Error/>
     },
     {
-      path: "/cineradar/filme/:id",
+      path: "/filme/:id",
       element: <MovieDetails />,
     },
     {
-      path: "/cineradar/pesquisa/:filter",
+      path: "/pesquisa/:filter",
       element: <Search />,
       loader: ({ params, search }) => ({ filter: params.filter, id: new URLSearchParams(search).get('q') }),
     }
-  ]);
+  ],
+  {
+    basename: "/cineradar", // Define o caminho base
+  }
+);
 
   return (
     <RouterProvider router={router} />  

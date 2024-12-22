@@ -54,7 +54,7 @@ const NavBar = () => {
         ></i>
       )}
 
-      <h1 className={styles.title} onClick={() => navigate("/cineradar")}>
+      <h1 className={styles.title} onClick={() => navigate("/")}>
         CINERADAR
       </h1>
 

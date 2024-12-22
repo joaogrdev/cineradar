@@ -75,12 +75,12 @@ const FiltersSection = () => {
       .replace(/[\u0300-\u036f]/g, "")
       .toLowerCase();
     if (tipo === "filmes") {
-      navigate(`/cineradar/pesquisa/filmes?q=${item.id}`);
+      navigate(`/pesquisa/filmes?q=${item.id}`);
     } else {
       if (activeFilter === "Década") {
-        navigate(`/cineradar/pesquisa/${formatActiveFilter}?q=${item.name}`);
+        navigate(`/pesquisa/${formatActiveFilter}?q=${item.name}`);
       } else {
-        navigate(`/cineradar/pesquisa/${formatActiveFilter}?q=${item.id}`);
+        navigate(`/pesquisa/${formatActiveFilter}?q=${item.id}`);
       }
     }
   };

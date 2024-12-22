@@ -92,7 +92,7 @@ export default function LandingPage() {
         <span className={styles.movieGenres}>{generos.join(" | ")}</span>
         <div className={styles.btnsAction}>
           <i title="Ver Mais" className={`${styles.btnDetails} bi bi-plus`} 
-          onClick={() => navigate(`/cineradar/filme/${activeCard?.id}`)}/>
+          onClick={() => navigate(`/filme/${activeCard?.id}`)}/>
           <i
             title="Assistir Trailer"
             className={`${styles.btnTrailer} bi bi-play-fill`}

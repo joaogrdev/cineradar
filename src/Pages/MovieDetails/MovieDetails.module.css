@@ -208,3 +208,22 @@
     font-family: var(--subtitle-font);
 }
 
+
+
+@media screen and (max-width: 563px) {
+    .info {
+        text-align: center !important;
+    }
+
+    .info .title {
+        font-size: 2rem;
+    }
+
+    .genreContainer {
+        justify-content: center;
+    }
+
+    .detailsMovie {
+        justify-content: center;
+    }
+}

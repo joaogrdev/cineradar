@@ -68,7 +68,7 @@ const MovieDetails = () => {
 
 
   const searchMovieByGenre = (genre) => {
-    navigate(`/cineradar/pesquisa/genero?q=${genre}`)
+    navigate(`/pesquisa/genero?q=${genre}`)
   }
 
   return (

@@ -132,7 +132,7 @@ const Search = () => {
                     <i class="bi bi-film"></i>
                   </div>
                 )}
-                <p className={styles.btnDetails} onClick={() => navigate(`/cineradar/filme/${movie.id}`)}>DETALHES</p>
+                <p className={styles.btnDetails} onClick={() => navigate(`/filme/${movie.id}`)}>DETALHES</p>
                 <div className={styles.movieInfo}>
                   <p className={styles.movieTitle}>{movie.title}</p>
                   <div className={styles.lineInfo}>
