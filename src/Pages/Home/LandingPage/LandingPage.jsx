@@ -1,8 +1,10 @@
 import styles from "./LandingPage.module.css";
 import { useEffect, useState } from "react";
 import api from "../../../Services/api";
+import { useNavigate } from "react-router-dom";
 
 export default function LandingPage() {
+  const navigate = useNavigate();
   const [cards, setCards] = useState([]);
   const [idActiveCard, setIdActiveCard] = useState(cards[4]?.id);
   const [activeCard, setActiveCard] = useState(cards[4]);
@@ -15,10 +17,11 @@ export default function LandingPage() {
     api
       .get("/movie/now_playing?language=pt-BR")
       .then(({ data }) => {
-        const primeirosSeisCards = data.results.slice(0, 6);
-        setCards(primeirosSeisCards);
-        setIdActiveCard(primeirosSeisCards[4]?.id);
-        setActiveCard(primeirosSeisCards[4]);
+        const notAdultMovies = data.results.filter((movie) => movie.adult === false);
+        const firstSixCards = notAdultMovies.slice(0, 6);
+        setCards(firstSixCards);
+        setIdActiveCard(firstSixCards[4]?.id);
+        setActiveCard(firstSixCards[4]);
       })
       .catch((error) => {
         console.log(error);
@@ -88,7 +91,8 @@ export default function LandingPage() {
         <h1 className={styles.movieTitle}>{activeCard?.title}</h1>
         <span className={styles.movieGenres}>{generos.join(" | ")}</span>
         <div className={styles.btnsAction}>
-          <i title="Ver Mais" className={`${styles.btnDetails} bi bi-plus`} />
+          <i title="Ver Mais" className={`${styles.btnDetails} bi bi-plus`} 
+          onClick={() => navigate(`/cineradar/filme/${activeCard?.id}`)}/>
           <i
             title="Assistir Trailer"
             className={`${styles.btnTrailer} bi bi-play-fill`}

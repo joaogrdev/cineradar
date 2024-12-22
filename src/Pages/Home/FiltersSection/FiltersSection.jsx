@@ -13,7 +13,6 @@ const FiltersSection = () => {
   const navigate = useNavigate();
   const [activeFilter, setActiveFilter] = useState("");
   const [resultFilter, setResultFilter] = useState([]);
-  const [route, setRoute] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
 
   const getGenres = async () => {
@@ -31,11 +30,13 @@ const FiltersSection = () => {
     await api
       .get("/person/popular")
       .then(({ data }) => {
-        const onlyActors = data.results.filter(
+        const excludedIds = [239507, 4095744, 3371804, 1907997];
+        const notAdultActors = data.results.filter(
+          (result) => !excludedIds.includes(result.id)
+        );
+        const onlyActors = notAdultActors.filter(
           (result) => result.known_for_department === "Acting"
         );
-        console.log(onlyActors);
-
         setResultFilter(onlyActors);
       })
       .catch((error) => {
@@ -85,7 +86,7 @@ const FiltersSection = () => {
   };
 
   return (
-    <section className={styles.section}>
+    <section className={styles.section} id="filtersList">
       <div className={styles.top}>
         <h4 className={styles.title}>
           Encontre o <span className={styles.contrast}>filme ideal</span> pra

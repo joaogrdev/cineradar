@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./MoviesList.module.css";
 import api from "../../../Services/api";
+import { useNavigate } from "react-router-dom";
 
 const MoviesList = () => {
   const options = [
@@ -12,13 +13,15 @@ const MoviesList = () => {
   const [moviesList, setMoviesList] = useState([]);
   const [filterSelected, setFilterSelected] = useState(options[0]);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const getMostPopularMovies = async () => {
+  const getMoviesByFilter = async () => {
     setLoading(true);
     await api
       .get(`/movie/${filterSelected?.id}?language=pt-BR`)
       .then(({ data }) => {
-        setMoviesList(data.results);
+        const notAdultMovies = data.results.filter((movie) => movie.adult === false);
+        setMoviesList(notAdultMovies);
         setLoading(false);
       })
       .catch((error) => {
@@ -27,11 +30,11 @@ const MoviesList = () => {
   };
 
   useEffect(() => {
-    getMostPopularMovies();
+    getMoviesByFilter();
   }, [filterSelected]);
 
   return (
-    <section className={styles.section}>
+    <section className={styles.section} id="moviesList">
       <div className={styles.top}>
         <h4 className={styles.title}>{filterSelected?.name}</h4>
         <div className={styles.containerOptions}>
@@ -67,6 +70,7 @@ const MoviesList = () => {
                   <i class="bi bi-film"></i>
                 </div>
               )}
+              <p className={styles.btnDetails} onClick={() => navigate(`/cineradar/filme/${movie.id}`)}>DETALHES</p>
               <div className={styles.movieInfo}>
                 <p className={styles.movieTitle}>{movie.title}</p>
                 <div className={styles.lineInfo}>

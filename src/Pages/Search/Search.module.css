@@ -82,6 +82,31 @@
     font-family: var(--subtitle-font);
 }
 
+.btnDetails {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: .5rem;
+    background-color: var(--contrast-light-color);
+    color: var(--gradient-color);
+    font-family: var(--title-font);
+    font-size: .9rem;
+    cursor: pointer;
+    z-index: 9999;
+    opacity: 0;
+}
+
+.movie:hover .btnDetails {
+    opacity: 1;
+    transition: .2s;
+}
+
+.btnDetails:hover {
+    background-color: var(--gradient-color);
+    color: var(--contrast-light-color);
+    transition: .2s;
+}
+
 .movieInfo {
     background-color: #0f1219c8;
     position: absolute;
