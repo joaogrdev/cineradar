@@ -81,8 +81,10 @@ function App() {
     const query = new URLSearchParams(window.location.search);
     const redirectedPath = query.get("redirect");
     if (redirectedPath) {
-      const decodedPath = decodeURIComponent(redirectedPath); // Decodifica a URL codificada
-      window.history.replaceState({}, '', decodedPath); // Ajusta a URL no navegador
+      const decodedPath = decodeURIComponent(redirectedPath);
+      if (window.location.pathname !== decodedPath) {
+        window.history.replaceState({}, '', decodedPath); // Ajusta a URL no navegador se for necessário
+      }
     }
   }, []);
 
