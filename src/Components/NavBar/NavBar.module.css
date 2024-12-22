@@ -3,7 +3,7 @@
     grid-template-columns: 25% 50% 25%;
     align-items: center;
     padding-block: 1rem;
-    z-index: 999;
+    z-index: 99999999999999999999999999999999;
     position: relative;
     border-bottom: 1px solid var(--shadow-dark-color);
 }
