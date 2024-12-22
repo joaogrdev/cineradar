@@ -80,11 +80,11 @@ function App() {
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
     const redirectedPath = query.get("redirect");
+    
     if (redirectedPath) {
       const decodedPath = decodeURIComponent(redirectedPath);
-      if (window.location.pathname !== decodedPath) {
-        window.history.replaceState({}, '', decodedPath); // Ajusta a URL no navegador se for necessário
-      }
+      // Substitui a URL no histórico sem o parâmetro `redirect`
+      window.history.replaceState({}, '', decodedPath);
     }
   }, []);
 
