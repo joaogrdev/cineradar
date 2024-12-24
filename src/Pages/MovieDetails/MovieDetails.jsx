@@ -3,16 +3,19 @@ import styles from "./MovieDetails.module.css";
 import NavBar from "../../Components/NavBar/NavBar";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../../Services/api";
+import Footer from "../../Components/Footer/Footer";
 const MovieDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [movieDetails, setMovieDetails] = useState([]);
-  const [genres, setGenres] = useState([])
-  const [trailers, setTrailers] = useState([])
-  const [cast, setCast] = useState([])
-
-'https://api.themoviedb.org/3/movie/12/credits?language=pt-br'
+  const [genres, setGenres] = useState([]);
+  const [trailers, setTrailers] = useState([]);
+  const [cast, setCast] = useState([]);
+  const [director, setDirector] = useState("");
+  const [watchProviders, setWatchProviders] = useState([]);
+  const [reviews, setReviews] = useState([]);
+  const [showWholeReview, setShowWholeReview] = useState("");
 
   const getMovieDetails = async () => {
     setLoading(true);
@@ -48,11 +51,46 @@ const MovieDetails = () => {
     await api
       .get(`/movie/${id}/credits?language=pt-br`)
       .then(({ data }) => {
-        console.log(data.cast);
-        const firstSixCast = data.cast.slice(0, 6);
+        const actingCast = data.cast.filter(
+          (cast) => cast.known_for_department === "Acting"
+        );
+        const castWithImage = actingCast.filter(
+          (cast) => cast.profile_path !== null
+        );
+        const tenFirstCast = castWithImage.slice(0, 10);
+        setCast(tenFirstCast);
 
-        const castWithImage = data.cast.filter(cast => cast.profile_path !== null);
-        setCast(castWithImage);
+        const director = data.crew.filter((crew) => crew.job === "Director");
+        const firstDirector = director.slice(0, 1);
+        setDirector(firstDirector[0].name);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const getWatchProviders = async () => {
+    setLoading(true);
+    await api
+      .get(`/movie/${id}/watch/providers`)
+      .then(({ data }) => {
+        console.log(data.results.BR);
+        setWatchProviders(data.results.BR.flatrate);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const getReviews = async () => {
+    setLoading(true);
+    await api
+      .get(`/movie/${id}/reviews?language=pt-br&page=1`)
+      .then(({ data }) => {
+        console.log(data.results);
+        setReviews(data.results);
         setLoading(false);
       })
       .catch((error) => {
@@ -64,12 +102,17 @@ const MovieDetails = () => {
     getMovieDetails();
     getTrailersMovie();
     getMovieCast();
+    getWatchProviders();
+    getReviews();
   }, [id]);
 
+  const searchMovieByGenre = (genreId) => {
+    navigate(`/pesquisa/genero?q=${genreId}`);
+  };
 
-  const searchMovieByGenre = (genre) => {
-    navigate(`/pesquisa/genero?q=${genre}`)
-  }
+  const searchMovieByCast = (castId) => {
+    navigate(`/pesquisa/atores?q=${castId}`);
+  };
 
   return (
     <div className={styles.container}>
@@ -92,57 +135,117 @@ const MovieDetails = () => {
             alt=""
           />
           <div className={styles.info}>
-          <div className={styles.genreContainer}>
+            <div className={styles.genreContainer}>
               {genres.map((genre) => (
-                <span className={styles.genreItem}
-                onClick={() => searchMovieByGenre(genre.id)}
-                >{genre.name}</span>
+                <span
+                  className={styles.genreItem}
+                  onClick={() => searchMovieByGenre(genre.id)}
+                >
+                  {genre.name}
+                </span>
               ))}
             </div>
             <h1 className={styles.title}>{movieDetails.title}</h1>
-            
+
             <p className={styles.overview}>{movieDetails.overview}</p>
             <div className={styles.detailsMovie}>
-              <span>IMDB {movieDetails.vote_average}</span>
+              <span>IMDB {Number(movieDetails.vote_average).toFixed(1)}</span>
               <span>{movieDetails.runtime} min</span>
               <span>{movieDetails.release_date?.substring(0, 4)}</span>
+              <span className={styles.director}>{director}</span>
             </div>
           </div>
         </div>
       </section>
 
-      <section className={styles.section}>
-        <div className={styles.containerVideos}>
+      <section className={`${styles.section} ${styles.lateralSection}`}>
+        {watchProviders?.length > 0 && (
+          <div className={styles.containerSection}>
+            <p className={styles.subtitle}>Onde Assistir</p>
+            {watchProviders.map((item) => (
+              <img
+                className={styles.watchImg}
+                src={`https://image.tmdb.org/t/p/original${item.logo_path}`}
+                alt=""
+              />
+            ))}
+          </div>
+        )}
+      </section>
+
+      {cast.length > 0 && (
+        <section className={`${styles.section} ${styles.mainSection}`}>
+        <div className={styles.containerSection}>
           <p className={styles.subtitle}>Elenco</p>
           <div className={styles.containerCast}>
             {cast.map((cast) => (
-              <div className={styles.castCard}>
-                <img src={`https://image.tmdb.org/t/p/original${cast.profile_path}`} alt="" />
+              <div
+                onClick={() => searchMovieByCast(cast.id)}
+                className={styles.castCard}
+              >
+                <img
+                  src={`https://image.tmdb.org/t/p/original${cast.profile_path}`}
+                  alt=""
+                />
                 <p>{cast.name}</p>
               </div>
             ))}
           </div>
-
         </div>
       </section>
+      )}
 
-      <section className={styles.section}>
-        <div className={styles.containerVideos}>
-          <p className={styles.subtitle}>Teaser e Trailers</p>
-          <div className={styles.containerIframes}>
-            {trailers.map((trailer) => (
-              <iframe
-                src={`https://www.youtube.com/embed/${trailer.key}`}
-                title={trailer.name}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            ))}
+      {trailers.length > 0 && (
+        <section className={styles.section}>
+          <div className={styles.containerSection}>
+            <p className={styles.subtitle}>Trailer</p>
+            <div className={styles.containerIframes}>
+              {trailers.map((item) => (
+                <iframe
+                  src={`https://www.youtube.com/embed/${item.key}`}
+                  title={item.name}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              ))}
+            </div>
           </div>
+        </section>
+      )}
 
-        </div>
-      </section>
+      {reviews.length > 0 && (
+        <section className={styles.section}>
+          <div className={styles.containerSection}>
+            <p className={styles.subtitle}>Avaliações</p>
+            <div className={styles.containerReviews}>
+              {reviews.map((item) => (
+                <div className={styles.reviewCard}>
+                  <div className={styles.reviewAuthor}>
+                    <span>{item.author_details.username}</span>
+                    <div className={styles.rating}>
+                      <i class="bi bi-star-fill"></i>
+                      <span>{item.author_details.rating}/10</span>
+                    </div>
+                  </div>
 
+                  <div className={styles.boxContent}>
+                    <p>{item.content}</p>
+                  </div>
+
+                  <div className={styles.reviewAvaliation}>
+                      <i class="bi bi-hand-thumbs-up"></i>
+                      <p>{Math.floor(Math.random() * 1000) + 1}</p>
+                      <i class="bi bi-hand-thumbs-down"></i>
+                      <p>{new Date(item.created_at).toLocaleDateString()}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <Footer />
     </div>
   );
 };

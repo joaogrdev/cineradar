@@ -7,6 +7,7 @@ import api from "../../Services/api";
 import styles from "./Search.module.css";
 import FiltersSection from "../Home/FiltersSection/FiltersSection";
 import { useLocation, useNavigate } from "react-router-dom";
+import Footer from "../../Components/Footer/Footer";
 
 const Search = () => {
   const searchParams = new URLSearchParams(window.location.search);
@@ -160,6 +161,7 @@ const Search = () => {
           )}
         </div>
       </section>
+      <Footer/>
     </div>
   );
 };

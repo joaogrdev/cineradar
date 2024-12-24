@@ -1,0 +1,12 @@
+.footer {
+    border-top: 1px solid var(--contrast-light-color);
+    padding-block: .5rem;
+    text-align: center;
+    background-color: var(--contrast-light-color);
+    font-family: var(--subtitle-font);
+    font-size: .9rem;
+    color: var(--darkest-color);
+    font-weight: bold;
+
+    margin-top: 5rem;
+}
