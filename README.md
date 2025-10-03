@@ -2,6 +2,8 @@
 
 Apresento o **CineRadar**, um projeto pessoal desenvolvido com **ReactJS** e **Vite** que transforma a experiência de busca por filmes. Utilizando a **API pública do TMDB**, a aplicação entrega dados sempre atualizados em uma interface moderna, responsiva e super rápida — com design modular utilizando **CSS Modules**.
 
+<a href="https://joaogrdev.github.io/cineradar" target="_blank">CineRadar</a>
+
 ## 🚀 Tecnologias utilizadas
 
 - **React** — Biblioteca JavaScript para construção de interfaces de usuário
